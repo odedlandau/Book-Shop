@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+
+<body onload="onInit()">
+
+    <h1>Welcome to my bookshop</h1>
+
+    <div class="add-book-container">
+        <button onclick="onAddBook()" class="add-book-btn">Add new book</button>
+    </div>
+
+    <section class="filter-container">
+        <h2>Filter by:</h2>
+        <label>
+            Max Price:
+            <input type="range" min="0" max="100" value="50" class="filter-price-range"
+                oninput="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
+        </label>
+        <label>
+            Min Rate:
+            <input type="range" min="0" max="10" value="5" class="filter-rate-range"
+                oninput="this.title=this.value;onSetFilterBy({minRate: this.value})" />
+        </label>
+        <input class="search" type="text" name="book-txt" placeholder="Search by book title"
+            oninput="onSetFilterBy({search: this.value})" />
+
+        <!-- <form class="search-book-form" onsubmit="onAddBook(event)">
+            <input type="text" name="book-txt" placeholder="Search by book title" />
+            <button>Search</button>
+        </form> -->
+    </section>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th class="th-clickable" onclick="onSetSortBy('title')">Title</th>
+            <th class="th-clickable" onclick="onSetSortBy('price')">Price</th>
+            <th class="th-clickable" onclick="onSetSortBy('rate')">Rate</th>
+            <th colspan="3">Action</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="paging-container">
+        <button onclick="onPreviousPage()">&lt &lt Previous Page</button>
+        <button onclick="onNextPage()">Next Page &gt &gt </button>
+    </div>
+
+    <div class="modal">
+        <h3></h3>
+        <h4>Current price is: <span></span> </h4>
+        <label>
+            Rate book:
+            <input type="range" min="0" max="10" value="5" class="rate-book-range"
+                onchange="this.title=this.value;onChangeRate(this.value)" />
+        </label>
+        <h4>Book Description</h4>
+        <p></p>
+        <button onclick="onCloseModal()">Close</button>
+    </div>
+
+    <!-- <div class="update-modal hidden">
+        <h3>Enter new price</h3>
+        <form onsubmit="onUpdateBookPrice(event)">
+
+            <input type="number" name="update-price-txt" placeholder="Enter new price" />
+            <button class="update-modal-btn">update</button>
+        </form>
+    </div>
+
+     <div class="add-book-modal hidden">
+        <h3>Add a book</h3>
+        <form class="add-book-form" onsubmit="onAddBook(event)">
+            <input type="text" name="book-txt" placeholder="Enter book title" />
+            <input type="text" name="price-txt" placeholder="Enter book price" />
+            <button>Add</button>
+        </form>
+    </div> -->
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/books.service.js"></script>
+    <script src="js/books.controller.js"></script>
+</body>
+
+</html>
